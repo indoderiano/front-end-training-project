@@ -1,10 +1,15 @@
 mod app;
+mod appinit;
 mod pages;
+mod store;
 mod event_bus;
 mod event_bus_two;
 mod event_bus_account;
 
 use wasm_bindgen::prelude::*;
+
+// use app::App;
+// use yewdux::prelude::WithDispatch;
 
 // pub struct DataState {
 //     name: String,
@@ -26,8 +31,9 @@ pub fn run_app() -> Result<(), JsValue> {
     //     age: 33
     // };
     
-    // yew::start_app::<WithDispatch<app::App>>();
+    // yew::start_app::<WithDispatch<App>>();
     yew::start_app::<app::App>();
+    // yew::start_app::<appinit::AppInit>();
 
     Ok(())
 }

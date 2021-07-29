@@ -15,7 +15,7 @@ impl Reducer for Counter {
     type Action = Action;
 
     fn new() -> Self {
-        Self { count: 0 }
+        Self { count: 2 }
     }
 
     fn reduce(&mut self, action: Self::Action) -> Changed {
@@ -40,7 +40,7 @@ impl Component for ReducerComponent {
 
     fn create(dispatch: Self::Properties, _link: ComponentLink<Self>) -> Self {
         // Magically increment counter for this example.
-        // self.dispatch.send(Action::Increment);
+        // dispatch.send(Action::Increment);
 
         Self { dispatch }
     }
@@ -58,8 +58,8 @@ impl Component for ReducerComponent {
         let increment = self.dispatch.callback(|_| Action::Increment);
         html! {
             <>
-            <h1>{ count }</h1>
-            <button onclick=increment>{"+1"}</button>
+                <h1>{ count }</h1>
+                <button onclick=increment>{"+1"}</button>
             </>
         }
     }

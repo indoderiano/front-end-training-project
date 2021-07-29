@@ -3,6 +3,8 @@ use yew_router::prelude::*;
 use yew_router::components::RouterAnchor;
 // use yew::services::ConsoleService;
 use yewdux::prelude::WithDispatch;
+// use yewdux::prelude::*;
+// use yewtil::NeqAssign;
 
 use crate::pages::{
     home::Home,
@@ -17,7 +19,16 @@ use crate::pages::{
     yewdux::dispatch_component::DispatchComponent,
     yewdux::dispatch_props::DispatchPropsComponent,
     yewdux::reducer_component::ReducerComponent,
+    yewdux::store_component::StoreComponent,
+    yewdux::reducer_global::ReducerGlobal,
+    yewdux::store_global::StoreGlobal
 };
+
+// use crate::store::reducer::{
+//     AppDispatch,
+//     Action,
+// };
+// use yewtil::NeqAssign;
 
 #[derive(Switch, Clone)]
 enum Route {
@@ -29,7 +40,10 @@ enum Route {
 
 pub struct App {
     // console: ConsoleService,
+    // dispatch: AppDispatch,
 }
+
+// pub type AppDispatch = DispatchProps<ReducerStore<Counter>>;
 
 pub enum Msg {}
 
@@ -47,6 +61,7 @@ pub enum Msg {}
 impl Component for App {
     type Message = Msg;
     type Properties = ();
+    // type Properties = AppDispatch;
     
     // type Properties = DataState {
     //     name: String::from("indo"),
@@ -60,7 +75,7 @@ impl Component for App {
         //     age: 33,
         // };
         App {
-            // console: ConsoleService{}
+            // dispatch
         }
     }
 
@@ -70,6 +85,7 @@ impl Component for App {
     }
 
     fn change(&mut self, _: Self::Properties) -> ShouldRender {
+        // self.dispatch.neq_assign(dispatch)
         false
     }
 
@@ -94,7 +110,9 @@ impl Component for App {
 
 
                 <p></p>
-                <Subscriber/>
+                <Subscriber
+                    // style="background: rgb(50,50,50);"
+                />
                 <p></p>
                 <Producer/>
 
@@ -112,8 +130,20 @@ impl Component for App {
                 <h1>{"Yewdux"}</h1>
                 <DispatchComponent/>
                 <WithDispatch<DispatchPropsComponent>/>
+                // <DispatchPropsComponent/>
                 <p>{"Reducer"}</p>
                 <WithDispatch<ReducerComponent>/>
+                // <ReducerComponent/>
+
+                <p>{"Reducer Global"}</p>
+                <WithDispatch<ReducerGlobal>/>
+                // <ReducerGlobal/>
+
+                <p>{"Store Component"}</p>
+                <StoreComponent/>
+
+                <p>{"Store Global"}</p>
+                <StoreGlobal/>
             </div>
         }
     }

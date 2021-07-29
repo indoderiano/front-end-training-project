@@ -33,19 +33,22 @@ impl Component for DispatchComponent {
         // NOTE: Changes aren't immediate! We won't see new state until we receive it in our update
         // method.
         // dispatch.reduce(|s| s.count += 1);
-        let check = Rc::new( State {
-            title: String::from("check title"),
-            count: 1
-        });
 
-        ConsoleService::info("check title in create");
-        ConsoleService::info(&check.title);
-        ConsoleService::info(&check.count.to_string());
+        // let check = Rc::new( State {
+        //     title: String::from("check title"),
+        //     count: 1
+        // });
+
+        // ConsoleService::info("check title in create");
+        // ConsoleService::info(&check.title);
+        // ConsoleService::info(&check.count.to_string());
+
+        // dispatch.send(msg: impl Into<<Self::Store as Store>::Input>)
 
         Self {
             dispatch,
             state: Rc::new( State {
-                count: 0,
+                count: 2,
                 title: String::from("Title")
             })
             // state: Default::default(),
@@ -59,10 +62,10 @@ impl Component for DispatchComponent {
         match msg {
             Msg::State(state) => {
                 // Receive new state and re-render.
-                ConsoleService::info("received new state");
-                ConsoleService::info(&self.state.title.clone());
-                ConsoleService::info(&state.count.to_string());
-                ConsoleService::info(&state.title.clone());
+                // ConsoleService::info("received new state");
+                // ConsoleService::info(&self.state.title.clone());
+                // ConsoleService::info(&state.count.to_string());
+                // ConsoleService::info(&state.title.clone());
                 self.state = state;
                 true
             }
@@ -78,17 +81,17 @@ impl Component for DispatchComponent {
         // We can modify state with callbacks too!
         let incr = self.dispatch.reduce_callback(|s| {
             // let s: &str = &s.title.clone();
-            ConsoleService::info("checking title from incr");
-            ConsoleService::info(&s.title.clone());
-            ConsoleService::info(&s.count.to_string());
+            // ConsoleService::info("checking title from incr");
+            // ConsoleService::info(&s.title.clone());
+            // ConsoleService::info(&s.count.to_string());
             // s.title = s.title.clone();
             s.title = String::from("Updated from view");
             s.count += 1;
         });
 
-        ConsoleService::info("checking title");
-        ConsoleService::info(&self.state.title.clone());
-        ConsoleService::info(&self.state.count.to_string());
+        // ConsoleService::info("checking title");
+        // ConsoleService::info(&self.state.title.clone());
+        // ConsoleService::info(&self.state.count.to_string());
 
         html! {
             <>
@@ -101,3 +104,9 @@ impl Component for DispatchComponent {
         }
     }
 }
+
+
+
+// QUESTION
+// CANNOT MAKE DEFAULT STATE
+// COUNT WILL ALWAYS START FROM 0

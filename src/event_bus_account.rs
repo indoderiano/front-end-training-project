@@ -45,6 +45,7 @@ impl Agent for EventBusAccount {
     fn handle_input(&mut self, msg: Self::Input, _id: HandlerId) {
         match msg {
             Request::LoadAccount => {
+                ConsoleService::info("load account");
                 for sub in self.subscribers.iter() {
                     self.link.respond(*sub, self.account.clone());
                 }
@@ -64,9 +65,11 @@ impl Agent for EventBusAccount {
         // let dis = id.to_string();
         // ConsoleService::info(format!("{}", &dis[..]));
 
-        
+
         // After a component is connected, data is shared immediately
-        self.link.respond(id.clone(), self.account.clone());
+        // self.link.respond(id.clone(), self.account.clone());
+
+        self.link.send_input(Request::LoadAccount);
         
         
         self.subscribers.insert(id);

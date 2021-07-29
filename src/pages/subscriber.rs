@@ -24,14 +24,11 @@ impl Component for Subscriber {
 
         ConsoleService::info("this is console log from subscriber");
 
-
         Self {
             message: "No message yet.".to_owned(),
             _producer: EventBus::bridge(link.callback(Msg::NewMessage)),
             // event_bus: EventBus::dispatcher(),
         }
-
-
         
     }
 
