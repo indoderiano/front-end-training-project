@@ -10,3 +10,5 @@ pub mod subscriber_account;
 pub mod function_component;
 
 pub mod yewdux;
+
+pub mod rustdom;

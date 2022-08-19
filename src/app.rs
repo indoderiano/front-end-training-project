@@ -21,7 +21,9 @@ use crate::pages::{
     yewdux::reducer_component::ReducerComponent,
     yewdux::store_component::StoreComponent,
     yewdux::reducer_global::ReducerGlobal,
-    yewdux::store_global::StoreGlobal
+    yewdux::store_global::StoreGlobal,
+
+    rustdom::RustDom,
 };
 
 // use crate::store::reducer::{
@@ -144,6 +146,9 @@ impl Component for App {
 
                 <p>{"Store Global"}</p>
                 <StoreGlobal/>
+
+                <p>{ "Rust DOM" }</p>
+                <RustDom/>
             </div>
         }
     }
